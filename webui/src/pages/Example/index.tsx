@@ -28,7 +28,7 @@ const GraphBox = (props: any) => {
       {
         source: 'node1',
         target: 'node2',
-        label:`hhhh\nbbbb`,
+        label: `hhhh\nbbbb`,
         style: {
           endArrow: {
             path: G6.Arrow.triangle(10, 20, 25), // 使用内置箭头路径函数，参数为箭头的 宽度、长度、偏移量（默认为 0，与 d 对应）
@@ -42,7 +42,8 @@ const GraphBox = (props: any) => {
   };
 
   useEffect(() => {
-      drawGraph();
+    if (graphRef?.current) return;
+    drawGraph();
   }, [])
 
   const drawGraph = () => {
@@ -51,7 +52,7 @@ const GraphBox = (props: any) => {
       container: containerRef.current || '',
       height: 500,
       width: 800,
-      plugins: [contextMenu,tooltip],
+      plugins: [contextMenu, tooltip],
       defaultNode: {
         size: 20,
         style: {
@@ -106,8 +107,8 @@ const GraphBox = (props: any) => {
             enableOptimize: true,
           },
           {
-            type:'brush-select',
-            trigger:'drag'
+            type: 'brush-select',
+            trigger: 'drag'
           },
           'drag-node',
           'brush-select',
@@ -126,14 +127,14 @@ const GraphBox = (props: any) => {
       graphRef?.current?.setItemState(item, 'hover', false);
     });
 
-    graphRef?.current?.on('node:contextmenu', (evt:any)=> {
+    graphRef?.current?.on('node:contextmenu', (evt: any) => {
       //当前节点定位
-     console.log(111, evt);
+      console.log(111, evt);
     });
   }
 
   const contextMenu = new G6.Menu({
-    getContent(evt:any) {
+    getContent(evt: any) {
       let header;
       if (evt.target && evt.target.isCanvas && evt.target.isCanvas()) {
         header = 'Canvas ContextMenu';
@@ -152,32 +153,33 @@ const GraphBox = (props: any) => {
       </ul>`;
     },
     handleMenuClick: (target, item) => {
-      console.log(target, item);
+      console.log(66666, target, item);
     },
     // offsetX and offsetY include the padding of the parent container
     // 需要加上父级容器的 padding-left 16 与自身偏移量 10
     offsetX: 16 + 10,
     // 需要加上父级容器的 padding-top 24 、画布兄弟元素高度、与自身偏移量 10
     offsetY: 0,
+    cursor: 'pointer',
     // the types of items that allow the menu show up
     // 在哪些类型的元素上响应
     itemTypes: ['node', 'edge'],
   });
-  
+
   const tooltip = new G6.Tooltip({
     offsetX: 10,
     offsetY: 20,
-    getContent(e:any) {
+    getContent(e: any) {
       const outDiv = document.createElement('div');
       outDiv.style.width = '180px';
       outDiv.innerHTML = `
         <h4>自定义tooltip</h4>
         <ul>
-          <li>Label: ${e.item?.getModel()?.label || e.item?.getModel()?.id}</li>
+          <li>}>Label: ${e.item?.getModel()?.label || e.item?.getModel()?.id}</li>
         </ul>`
       return outDiv
     },
-    itemTypes: ['node','edge']
+    itemTypes: ['node', 'edge']
   });
 
   return (

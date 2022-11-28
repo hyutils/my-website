@@ -8,9 +8,9 @@ const App = () => {
   const [visible, setVisible] = useState(false);
   const [graphData, setGraphData] = useState();
 
-  useEffect(()=>{
+  useEffect(() => {
     initGraph();
-  },[])
+  }, [])
 
   const initGraph = () => {
     fetch('https://gw.alipayobjects.com/os/basement_prod/da5a1b47-37d6-44d7-8d10-f3e046dabf82.json')
@@ -48,9 +48,12 @@ const App = () => {
 
   return (
     <div className='bigdataboot'>
-      <Button type='primary' onClick={() => setVisible(true)}>点击打开</Button>
+      {/* <Button type='primary' onClick={() => setVisible(true)}>点击打开</Button> */}
 
-      <Modal
+      <div className='modal-conten-box'>
+        <GraphBox graphData={graphData} />
+      </div>
+      {/* <Modal
         title="弹窗"
         visible={visible}
         maskClosable={false}
@@ -62,7 +65,7 @@ const App = () => {
         <div className='modal-conten-box'>
           <GraphBox graphData={graphData}/>
         </div>
-      </Modal>
+      </Modal> */}
     </div>
   )
 }
