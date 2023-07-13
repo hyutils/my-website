@@ -1,16 +1,17 @@
 import React from 'react'
-import BigData from './BigData';
-import TextExample from './Example';
-
+// import BigData from './BigData';
+// import TextExample from './Example';
+import Drag from './Drag';
 import './style.less';
 export default function index() {
   return (
     <div className='pageRoot'>
       <div className='left-demo'>
-        <TextExample />
+        {/* <TextExample /> */}
+        <Drag />
       </div>
       <div className='right-bigData'>
-        <BigData />
+        {/* <BigData /> */}
       </div>
     </div>
   )
