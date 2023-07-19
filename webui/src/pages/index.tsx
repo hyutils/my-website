@@ -1,20 +1,17 @@
 import React from 'react'
-// import BigData from './BigData';
-// import TextExample from './Example';
 import MyEdtior from './Myedtior';
-// import Drag from './Drag';
-
+import UploadCom from '../components/Upload';
 import './style.less';
 export default function index() {
   return (
     <div className='pageRoot'>
       <div className='left-demo'>
-        {/* <TextExample /> */}
-        {/* <Drag /> */}
+       
         <MyEdtior />
       </div>
       <div className='right-bigData'>
-        {/* <BigData /> */}
+        <div>上传文件</div>
+        <UploadCom />
       </div>
     </div>
   )

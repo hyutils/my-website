@@ -41,7 +41,7 @@ interface IProps {
           if (stream.eatSpace()) {
             return null;
           }
-          stream.eatWhile(/[\$:\w\u4e00-\u9fa5]/);
+          stream.eatWhile(/[\\$:\w\u4e00-\u9fa5]/);
           const cur = stream.current();
           if (keyWords.some(item => item === cur)) {
             return 'keyword';
@@ -94,6 +94,8 @@ interface IProps {
       lineNumbers: true,
       fullScreen: true,
       mode: 'nebula',
+      gutters: ['CodeMirror-linenumbers'], // 添加行号的显示区域
+      extraKeys: { 'Ctrl-Space': 'autocomplete' }, // 启用自动完成
       ...myOptions,
     };
    editor.current = CodeMirror.fromTextArea(textarea.current, options);
@@ -141,9 +143,6 @@ interface IProps {
       });
     }
 
-    const tip = document.getElementsByClassName('CodeMirror-hints');
-    console.log("dgvdf", tip);
-    
     if (
       props.onChangeLine &&
       (change.origin === '+delete' || change.origin === '+input')
