@@ -1,6 +1,7 @@
 import React from 'react'
 import MyEdtior from './Myedtior';
-import UploadCom from '../components/Upload';
+import List from '../components/VirtualTable/list';
+import TableList from '../components/VirtualTable/table'
 import './style.less';
 export default function index() {
   return (
@@ -10,8 +11,8 @@ export default function index() {
         <MyEdtior />
       </div>
       <div className='right-bigData'>
-        <div>上传文件</div>
-        <UploadCom />
+     {/* <List /> */}
+        <TableList />
       </div>
     </div>
   )
