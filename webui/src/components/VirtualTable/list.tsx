@@ -3,16 +3,14 @@ import React, { useEffect, useState } from "react";
 import { listData } from "./data";
 
 type ListType = {
-  itemHeight?: number;
-  visibleHeight?: number;
-  total?: number;
-  dataSource?: any[];
+  itemHeight?: number; // 每一项的高度
+  visibleHeight?: number; // 可见高度
+  total?: number; // 数据总数
+  dataSource?: any[]; // 全部数据
 };
 
-const myList = _.map(listData, (item, index) => ({
-  ...item,
-  name: `${item.name}${index}`,
-}));
+// 为了看效果我模拟的数据
+const myList = Array.from(Array(1000), (item, index) => ({name: `名字${item}`, id: index}));
 
 const List = (props: ListType) => {
   const {
@@ -54,7 +52,7 @@ const List = (props: ListType) => {
       }}
       onScroll={onScroll} // 在父元素上添加滚动事件监听
     >
-      {/* 可视数据 */}
+      {/* 可视数据 为了滚动数据一直在可视区。加上顶部偏移 */}
       <div style={{ height: visibleHeight, marginTop: offset.top }}>
         {_.map(showData, (item, index: any) => {
           return (

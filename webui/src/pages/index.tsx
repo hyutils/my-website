@@ -11,8 +11,8 @@ export default function index() {
         <MyEdtior />
       </div>
       <div className='right-bigData'>
-     {/* <List /> */}
-        <TableList />
+     <List />
+        {/* <TableList /> */}
       </div>
     </div>
   )

@@ -1,12 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Table } from "antd";
 import _ from "lodash";
-import { listData } from "./data";
-const myList = _.map(listData, (item, index) => ({
-  ...item,
-  name: `${item.name}${index}`,
-}));
-const VirtualTable = (props: any) => {
+type TableType = {
+  itemHeight?: number; // 每一项的高度
+  visibleHeight?: number; // 可见高度
+  total?: number; // 数据总数
+  dataSource?: any[]; // 全部数据
+};
+// 为了看效果我模拟的数据
+const myList = Array.from(Array(1000), (item, index) => ({name: `名字${item}`, id: index}));
+
+const VirtualTable = (props: TableType) => {
   const {
     itemHeight = 54,
     visibleHeight = 540,
