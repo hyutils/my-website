@@ -138,3 +138,5 @@ hPromise
   .catch((error:any) => {
     console.error("Rejected:", error.message);
   });
+
+  export {}

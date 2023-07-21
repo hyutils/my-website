@@ -108,3 +108,4 @@ myPromise
   .catch((error) => {
     console.error('Rejected:', error);
   });
+export {}
