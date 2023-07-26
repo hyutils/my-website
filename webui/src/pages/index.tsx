@@ -7,7 +7,7 @@ import ChangeLang from "../components/ChangeLanguage/intl";
 import intl from "react-intl-universal";
 
 import Department from "./RenderTree";
-
+import DragY from "./Drag/dragY";
 import "./style.less";
 const AppIndex = () => {
   const { t } = useTranslation();
@@ -17,7 +17,8 @@ const AppIndex = () => {
         <MyEdtior />
       </div>
       <div className="right-bigData">
-        <Department />
+        {/* <Department /> */}
+        <DragY />
       </div>
     </div>
   );

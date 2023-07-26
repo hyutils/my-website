@@ -17,3 +17,23 @@
     background: transparent;
   }
 }
+
+.DragYWrapperRoot{
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  .lineY{
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    right: 0;
+    height: 10px;
+    background: transparent;
+    cursor: row-resize;
+  }
+
+  .bottomWrapper{
+    border-top: 2px solid rgba(0,0,0,0.06);
+  }
+}
