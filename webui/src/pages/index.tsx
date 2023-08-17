@@ -2,7 +2,7 @@ import React from "react";
 import MyEdtior from "./Myedtior";
 import { useTranslation } from "react-i18next";
 import DragList from '../components/DraggerSort/list'
-import DragY from "./Drag/dragY";
+import FileUploader from './Upload'
 import "./style.less";
 const AppIndex = () => {
   const { t } = useTranslation();
@@ -12,7 +12,8 @@ const AppIndex = () => {
         <MyEdtior />
       </div>
       <div className="right-bigData">
-        <DragList />
+        {/* <DragList /> */}
+        <FileUploader />
       </div>
     </div>
   );
