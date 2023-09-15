@@ -1,5 +1,7 @@
+import DropdownInput from "@/components/DropdownInput";
 import {
   Button,
+  Dropdown,
   Form,
   Input,
   InputNumber,
@@ -35,8 +37,6 @@ interface EditableCellProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
 }
 
-
-
 const EditorTable: React.FC = () => {
   const [form] = Form.useForm();
   const [data, setData] = useState(originData);
@@ -65,7 +65,7 @@ const EditorTable: React.FC = () => {
           ...item,
           ...row,
         });
-        
+
         setData(newData);
         setEditingKey("");
       } else {
@@ -74,7 +74,7 @@ const EditorTable: React.FC = () => {
         setData(newData);
         setEditingKey("");
       }
-      form.setFieldsValue({name:''})
+      form.setFieldsValue({ name: "" });
     } catch (errInfo) {
       console.log("Validate Failed:", errInfo);
     }
@@ -103,7 +103,13 @@ const EditorTable: React.FC = () => {
               },
             ]}
           >
-             <Input autoComplete="off" onPressEnter={()=>save(index?.toString())} onBlur={()=>{save(index?.toString())}}/>
+            <Input
+              autoComplete="off"
+              onPressEnter={() => save(index?.toString())}
+              onBlur={() => {
+                save(index?.toString());
+              }}
+            />
           </Form.Item>
         ) : (
           children
@@ -131,33 +137,7 @@ const EditorTable: React.FC = () => {
       width: "40%",
       editable: true,
     },
-    // {
-    //   title: "operation",
-    //   dataIndex: "operation",
-    //   render: (_: any, record: Item) => {
-    //     const editable = isEditing(record);
-    //     return editable ? (
-    //       <span>
-    //         <Typography.Link
-    //           onClick={() => save(record.key)}
-    //           style={{ marginRight: 8 }}
-    //         >
-    //           Save
-    //         </Typography.Link>
-    //         <Popconfirm title="Sure to cancel?" onConfirm={cancel}>
-    //           <a>Cancel</a>
-    //         </Popconfirm>
-    //       </span>
-    //     ) : (
-    //       <Typography.Link
-    //         disabled={editingKey !== ""}
-    //         onClick={() => edit(record)}
-    //       >
-    //         Edit
-    //       </Typography.Link>
-    //     );
-    //   },
-    // },
+    
   ];
 
   const mergedColumns = columns.map((col) => {
@@ -185,15 +165,20 @@ const EditorTable: React.FC = () => {
         age: 32,
         address: `London Park no. ${key}`,
       },
-      ...data
+      ...data,
     ];
     setData(newData);
-    setEditingKey(key)
+    setEditingKey(key);
   };
 
   return (
     <div>
       <Button onClick={add}>新增</Button>
+      <div style={{margin:'10px 20px'}}>
+        <DropdownInput />
+      </div>
+      
+      <div style={{ height: 20 }}></div>
       <Form form={form} component={false}>
         <Table
           components={{

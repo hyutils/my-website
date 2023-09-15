@@ -40,6 +40,20 @@ const DemoTree = () => {
         },
       ],
     },
+    {
+      title: "根节点 3",
+      key: "3-1",
+      children: [
+        {
+          title: "子节点6",
+          key: "3-1-0",
+        },
+        {
+          title: "子节点 7",
+          key: "3-1-1",
+        },
+      ],
+    }
   ]);
   const refInput = useRef<any>(null);
   const [expandedKeys, setExpandedKeys] = useState<any[]>([]);
@@ -176,7 +190,13 @@ const DemoTree = () => {
     const { title, icon, key, isInput } = node;
     const paddingLeft = 16 * (node.level - 1);
     if (isInput)
-      return <Input ref={refInput} onPressEnter={(e) => onEnter(e, node)} onBlur={(e)=> onEnter(e, node)}/>;
+      return (
+        <Input
+          ref={refInput}
+          onPressEnter={(e) => onEnter(e, node)}
+          onBlur={(e) => onEnter(e, node)}
+        />
+      );
     return (
       <Dropdown overlay={() => overlay(node)} trigger={["click"]}>
         <div
@@ -200,13 +220,8 @@ const DemoTree = () => {
         expandedKeys={expandedKeys}
         switcherIcon={<DownOutlined />}
         titleRender={titleRender}
+        onExpand={(keys: any[]) => setExpandedKeys(keys)}
       />
-      <Button
-        style={{ marginTop: 48 }}
-        onClick={() => refInput?.current?.focus({ cursor: "start" })}
-      >
-        点击聚焦
-      </Button>
     </div>
   );
 };
