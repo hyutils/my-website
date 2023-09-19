@@ -4,9 +4,12 @@ import { Button, Dropdown, Input, Menu, Tree } from "antd";
 import type { DataNode, TreeProps } from "antd/es/tree";
 import { DownOutlined } from "@ant-design/icons";
 import { getChildren, updateItem, updateTreeData } from "./utils";
+import DynamicsForm from "./DynamicsForm";
+import HoverTable from "./HoverTable";
 const { TreeNode } = Tree;
 
 const DemoTree = () => {
+  const [visible, setVisible] = useState<boolean>(false);
   const [treeData, setTreeData] = useState([
     {
       title: "根节点 1",
@@ -53,7 +56,7 @@ const DemoTree = () => {
           key: "3-1-1",
         },
       ],
-    }
+    },
   ]);
   const refInput = useRef<any>(null);
   const [expandedKeys, setExpandedKeys] = useState<any[]>([]);
@@ -222,6 +225,12 @@ const DemoTree = () => {
         titleRender={titleRender}
         onExpand={(keys: any[]) => setExpandedKeys(keys)}
       />
+
+      <Button style={{ marginTop: 20 }} onClick={() => setVisible(true)}>
+        打开弹窗
+      </Button>
+      <HoverTable />
+      <DynamicsForm visible={visible} />
     </div>
   );
 };

@@ -93,24 +93,7 @@ const EditorTable: React.FC = () => {
     return (
       <td {...restProps}>
         {editing && dataIndex === "name" ? (
-          <Form.Item
-            name={dataIndex}
-            style={{ margin: 0 }}
-            rules={[
-              {
-                required: true,
-                message: `Please Input ${title}!`,
-              },
-            ]}
-          >
-            <Input
-              autoComplete="off"
-              onPressEnter={() => save(index?.toString())}
-              onBlur={() => {
-                save(index?.toString());
-              }}
-            />
-          </Form.Item>
+          <DropdownInput value="" onChange={()=>{}}/>
         ) : (
           children
         )}
