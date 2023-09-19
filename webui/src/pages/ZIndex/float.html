@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      float: left; /* 或者 float: right; */
+      margin-right: 10px; /* 为了增加文字和图片之间的间距 */
+      width: 50px;
+      height: 50px;
+    }
+    .content{
+      width: 150px;
+      height: 200px;
+    }
+
+    /* -------------以下是多栏布局的样式---------------- */
+    .column {
+      width: 100%;
+    }
+
+    .column-item {
+      width: 30%; /* 每栏的宽度 */
+      float: left;
+      background: greenyellow;
+      margin-right: 2%; /* 为了增加栏目之间的间距 */
+      box-sizing: border-box; /* 防止边框和填充增加宽度 */
+    }
+
+  </style>
+</head>
+<body>
+  <!-- 文字环绕部分 -->
+  <div class="content">
+    <img src="./image.jpg" alt="图片">
+    <p>
+      这是一段文本，会围绕在图片周围。这是一段文本，会围绕在图片周围。这是一段文本，会围绕在图片周围。
+    </p>
+  </div>
+  <!-- 多栏布局 -->
+  <div class="column">
+    <div class="column-item">栏目 1</div>
+    <div class="column-item">栏目 2</div>
+    <div class="column-item">栏目 3</div>
+  </div>
+</body>
+</html>

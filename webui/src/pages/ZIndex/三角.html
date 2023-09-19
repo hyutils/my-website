@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    .triangle {
+      width: 0;
+      height: 0;
+      border-left: 50px solid transparent; /* 左边透明 */
+      border-right: 50px solid transparent; /* 右边透明 */
+      border-bottom: 100px solid #f00; /* 底边为红色 */
+    }
+
+    .sector {
+      width: 0;
+      height: 0;
+      border: 100px solid transparent; /* 边框宽度和颜色可以调整 */
+      border-bottom-color: #f00; /* 底边的颜色，这里是红色 */
+      border-radius: 50%; /* 将边框变为圆形 */
+      transform: rotate(45deg); /* 旋转45度，可根据需要调整角度 */
+    }
+
+    .bubble-container {
+      position: relative;
+      max-width: 200px; /* 气泡框最大宽度 */
+      background-color: #0077cc; /* 气泡框背景颜色 */
+      color: #fff; /* 文字颜色 */
+      border-radius: 10px; /* 圆角边框 */
+      padding: 10px; /* 内边距 */
+      margin: 10px; /* 外边距，可根据需要调整 */
+    }
+
+    .triangle1 {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 10px solid transparent; /* 左边透明 */
+      border-bottom: 10px solid transparent; /* 右边透明 */
+      border-left: 10px solid #0077cc; /* 底边为气泡框背景色 */
+      right: -10px; /* 位于气泡框顶部 */
+      top: 50%; /* 居中 */
+      transform: translateY(-50%); /* 水平居中 */
+    }
+  </style>
+</head>
+<body>
+  <!-- 三角形 -->
+  <div class="triangle"></div>
+  <!-- 扇形 -->
+  <div class="sector"></div>
+  <!-- 气泡框 -->
+  <div class="bubble-container">
+    <p>这是一个气泡框带有三角形。</p>
+    <div class="triangle1"></div>
+  </div>
+</body>
+</html>

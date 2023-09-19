@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .span1, .span2{
+      display: block;
+      width: 100px;
+      height: 50px;
+      background: grey;
+      margin-bottom: 20px;
+    }
+
+    .content2{
+      margin-top: 50px;
+    }
+
+    .div1, .div2{
+      display: inline;
+      /* 设置为行内元素 宽高设置无效 */
+      width: 100px;
+      height: 200px;
+      margin-left: 10px;
+      background: gold;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <!-- 行内元素设置宽高无效 -->
+    <span style="height: 80px;width: 100px; background: red">行</span>
+  </div>
+  <div>
+    <span class="span1">我是行内元素1</span>
+    <span class="span2">我是行内元素2</span>
+  </div>
+  <div class="content2">
+    <div class="div1">我是块级元素1</span>
+    <div class="div2">我是块级元素2</div>
+  </div>
+</body>
+</html>
