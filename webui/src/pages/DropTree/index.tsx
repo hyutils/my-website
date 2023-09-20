@@ -3,24 +3,32 @@ import _ from "lodash";
 import { Button, Dropdown, Input, Menu, Tree } from "antd";
 import type { DataNode, TreeProps } from "antd/es/tree";
 import { DownOutlined } from "@ant-design/icons";
-import { getChildren, updateItem, updateTreeData } from "./utils";
+import {
+  deleteNodeByKey,
+  mergeChildrenToParent,
+  editTreeItem,
+  updateItem,
+  updateTreeData,
+  mergeChildrenToParent1,
+} from "./utils";
 import DynamicsForm from "./DynamicsForm";
 import HoverTable from "./HoverTable";
+import DropdownInput from "@/components/DropdownInput";
 const { TreeNode } = Tree;
 
 const DemoTree = () => {
   const [visible, setVisible] = useState<boolean>(false);
   const [treeData, setTreeData] = useState([
     {
-      title: "根节点 1",
+      title: "根节点1",
       key: "1-0",
       children: [
         {
-          title: "子节点 1",
+          title: "子节点1",
           key: "1-0-0",
         },
         {
-          title: "子节点 2",
+          title: "子节点2",
           key: "1-0-1",
         },
         {
@@ -30,7 +38,7 @@ const DemoTree = () => {
       ],
     },
     {
-      title: "根节点 2",
+      title: "根节点2",
       key: "2-1",
       children: [
         {
@@ -38,21 +46,25 @@ const DemoTree = () => {
           key: "2-1-0",
         },
         {
-          title: "子节点 5",
+          title: "子节点5",
           key: "2-1-1",
         },
       ],
     },
     {
-      title: "根节点 3",
+      title: "根节点3",
       key: "3-1",
       children: [
         {
           title: "子节点6",
           key: "3-1-0",
+          children:[{
+            title:'jjj',
+            key:'dfv'
+          }]
         },
         {
-          title: "子节点 7",
+          title: "子节点7",
           key: "3-1-1",
         },
       ],
@@ -60,12 +72,13 @@ const DemoTree = () => {
   ]);
   const refInput = useRef<any>(null);
   const [expandedKeys, setExpandedKeys] = useState<any[]>([]);
-
+  const [isAdd, setIsAdd] = useState<boolean>(false); // 是否时新增状态
   useEffect(() => {
+    if (!isAdd) return;
     setTimeout(() => {
-      refInput?.current?.focus({ cursor: "start" });
-    }, 500);
-  }, [expandedKeys]);
+      refInput?.current?.focus({ cursor: "end" });
+    }, 400);
+  }, [isAdd]);
 
   const handleDrop = (info: any) => {
     console.log(info);
@@ -76,22 +89,19 @@ const DemoTree = () => {
       info.dropPosition - Number(dropPos[dropPos.length - 1]);
 
     // 检查拖拽节点和目标节点是否属于同一个根节点
-    const isSameRoot = dropKey.split("-")[0] === dragKey.split("-")[0];
+    // const isSameRoot = dropKey.split("-")[0] === dragKey.split("-")[0];
 
-    // const dropLength = dropKey?.split("-")?.length - 1;
-    // const dragLength = dragKey?.split("-")?.length - 1;
-    // 防止节点成为新的根节点
-    if (info.dragNode.props.eventKey.split("-").length === 1) {
-      return;
-    }
-    console.log("isSameRoot", isSameRoot);
-    // || (isSameRoot && info?.dropPosition !== 0 && dropLength !== dragLength)
-    if (!isSameRoot) {
-      // 如果不属于同一个根节点，阻止拖拽
-      console.log("不同");
+    // // 防止节点成为新的根节点
+    // if (info.dragNode.props.eventKey.split("-").length === 1) {
+    //   return;
+    // }
+    // console.log("isSameRoot", isSameRoot);
+    // if (!isSameRoot) {
+    //   // 如果不属于同一个根节点，阻止拖拽
+    //   console.log("不同");
 
-      return false;
-    }
+    //   return false;
+    // }
 
     const loop = (
       data: DataNode[],
@@ -153,15 +163,26 @@ const DemoTree = () => {
     <Menu
       onClick={(e) => {
         if (e?.key === "add") addItem(node);
-        if (e?.key === "edit") {
+        if (e?.key === "edit") editItem(node);
+        if (e?.key === "del") {
+          const data = mergeChildrenToParent1(treeData, node?.key);
+          setTreeData(data);
         }
       }}
     >
       <Menu.Item key="del">刪除</Menu.Item>
       <Menu.Item key="add">新增</Menu.Item>
+      <Menu.Item key="edit">编辑</Menu.Item>
     </Menu>
   );
 
+  const editItem = (node: any) => {
+    const data = editTreeItem(treeData, node?.key);
+    setTreeData(data);
+    setIsAdd(true);
+  };
+
+  // 添加节点
   const addItem = (node: any) => {
     const len = _.isEmpty(node?.children) ? 0 : node?.children?.length;
     const newChild = _.isEmpty(node.children)
@@ -179,23 +200,37 @@ const DemoTree = () => {
       ? expandedKeys
       : [node?.key, ...expandedKeys];
     setExpandedKeys(expands);
+    setIsAdd(true);
   };
 
+  // 监听添加节点的输入
   const onEnter = (e: any, node: any) => {
     const value = e?.target?.value;
+    console.log("hhhhh", value);
+
+    setIsAdd(false);
+    if (!value) {
+      const dele = deleteNodeByKey(treeData, node?.key);
+      console.log("删除的", node?.key, dele);
+
+      setTreeData(dele);
+      return;
+    }
     const data = updateItem(treeData, node?.key, value);
     console.log("结果", data);
 
     setTreeData(data);
   };
 
+  // 自定义节点
   const titleRender = (node: any) => {
     const { title, icon, key, isInput } = node;
     const paddingLeft = 16 * (node.level - 1);
     if (isInput)
       return (
-        <Input
+        <DropdownInput
           ref={refInput}
+          initValue={title}
           onPressEnter={(e) => onEnter(e, node)}
           onBlur={(e) => onEnter(e, node)}
         />

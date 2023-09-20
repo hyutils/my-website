@@ -1,15 +1,37 @@
 import { Dropdown, Input } from "antd";
-import React, { useEffect, useState } from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
+import type { InputProps } from "antd";
 import _ from "lodash";
 
-const DropdownInput = (props: {
+interface DropdownInputType extends InputProps {
   errorInfo?: string;
-  value?: string;
-  onChange?: (v: string) => void;
-}) => {
-  const { errorInfo, onChange } = props;
+  initValue?: string;
+  // onChange?: (v: any) => void;
+}
+
+const DropdownInputFun: React.ForwardRefRenderFunction<
+  unknown,
+  DropdownInputType
+> = (props, ref) => {
+  const { errorInfo, initValue, onChange, onBlur, onPressEnter } = props;
   const [open, setOpen] = useState<boolean>(false);
-  const [errorText, setErrorText] = useState<string>("请输入中英文数字及下划线");
+  const [errorText, setErrorText] =
+    useState<string>("请输入中英文数字及下划线");
+  const [value, setValue] = useState<string>(""); // 值
+
+  const inputRef = useRef<any>(null);
+
+  useImperativeHandle(ref, () => inputRef?.current);
+
+  useEffect(() => {
+    if (initValue) setValue(initValue);
+  }, [initValue]);
 
   useEffect(() => {
     if (errorInfo) setErrorText(errorInfo);
@@ -19,7 +41,7 @@ const DropdownInput = (props: {
   const handleChange = _.debounce((e: any, isSure = false) => {
     const { value } = e?.target;
     const reg = /^[a-zA-Z0-9_\u4e00-\u9fa5]+$/;
-    console.log("输入变化了", !reg.test(value));
+    console.log("输入变化了",value, !reg.test(value));
 
     if (!reg.test(value)) {
       setOpen(true);
@@ -47,19 +69,23 @@ const DropdownInput = (props: {
       // onOpenChange={(e) => setOpen(e)}
     >
       <Input
+        ref={inputRef}
+        value={value}
         onChange={(e) => {
           e?.persist();
+          setValue(e?.target?.value);
           handleChange(e);
         }}
         onBlur={(e) => {
-          !open && onChange?.(e?.target?.value);
+          !open && onBlur?.(e);
         }}
         onPressEnter={(e: any) => {
-          !open && onChange?.(e?.target?.value);
+          !open && onPressEnter?.(e);
         }}
         style={{ width: 272, borderColor: open ? "red" : "" }}
       />
     </Dropdown>
   );
 };
+const DropdownInput = forwardRef(DropdownInputFun);
 export default DropdownInput;
