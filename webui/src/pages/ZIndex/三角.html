@@ -45,6 +45,42 @@
       top: 50%; /* 居中 */
       transform: translateY(-50%); /* 水平居中 */
     }
+
+    .star {
+    position: relative;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 100px solid yellow;
+  }
+
+  .star::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: -50px;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid yellow;
+    transform: rotate(36deg);
+  }
+
+  .star::after {
+    content: "";
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 100px solid yellow;
+    transform: rotate(-36deg);
+  }
+
   </style>
 </head>
 <body>
@@ -57,5 +93,7 @@
     <p>这是一个气泡框带有三角形。</p>
     <div class="triangle1"></div>
   </div>
+  <!-- 五角星 -->
+  <div class="start"></div>
 </body>
 </html>
