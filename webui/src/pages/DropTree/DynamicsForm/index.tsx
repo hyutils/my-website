@@ -42,7 +42,10 @@ const DynamicsForm = (props: any) => {
     form.validateFields().then(async (values) => {
       console.log("校验通过啦", values);
     });
+
   };
+  
+  
   return (
     <Modal
       open={visible}

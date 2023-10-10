@@ -6,12 +6,14 @@ import FileUploader from './Upload';
 import DropTree from './DropTree'
 import "./style.less";
 import EditorTable from "./DropTree/EditorTable";
+import UploadCom from "@/components/Upload";
 const AppIndex = () => {
   const { t } = useTranslation();
   return (
     <div className="pageRoot">
       <div className="left-demo">
-        <MyEdtior />
+        {/* <MyEdtior /> */}
+        <UploadCom />
       </div>
       <div className="right-bigData">
         {/* <FileUploader /> */}

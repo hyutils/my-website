@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML to Markdown Converter</title>
+  <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+
+</head>
+<body>
+  <h1>HTML to Markdown Converter</h1>
+  <input type="file" id="fileInput" accept=".html">
+  <button id="convertButton">Convert and Download</button>
+  <a id="downloadLink" style="display: none">Download Markdown</a>  
+</body>
+<script>
+  const fileInput = document.getElementById('fileInput');
+  const convertButton = document.getElementById('convertButton');
+  const downloadLink = document.getElementById('downloadLink');
+
+  convertButton.addEventListener('click', function () {
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = function (event) {
+        const htmlContent = event.target.result;
+
+        // 在这里执行 HTML 解析和提取内容的逻辑
+        const extractedContent = extractContentFromHtml(htmlContent);
+        console.log("内容", extractedContent);
+        // 在这里执行 HTML 到 Markdown 的转换
+        const markdownContent = convertHtmlToMarkdown(extractedContent);
+
+        // 创建 Markdown 文件并下载
+        const blob = new Blob([markdownContent], { type: 'text/markdown' });
+        const url = URL.createObjectURL(blob);
+        downloadLink.href = url;
+        downloadLink.download = 'converted.md';
+        downloadLink.style.display = 'block';
+      };
+
+      reader.readAsText(file, 'utf-8');
+    }
+  });
+
+  function convertHtmlToMarkdown(html) {
+    const turndownService = new TurndownService()
+    const markdown = turndownService.turndown(html)
+    return markdown;
+  }
+  function extractContentFromHtml(html) {
+  // 在这里执行 HTML 解析和提取内容的逻辑
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(html, 'text/html');
+  
+  // 假设你要提取 body 内最底层的 div 包裹的内容
+  const divElements = doc.querySelectorAll('body');
+  const lastDiv = divElements[divElements.length - 1];
+
+  // 返回提取的内容作为字符串
+  return lastDiv.innerHTML;
+}
+</script>
+</html>
