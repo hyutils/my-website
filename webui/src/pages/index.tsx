@@ -6,6 +6,7 @@ import FileUploader from './Upload';
 import DropTree from './DropTree'
 import "./style.less";
 import EditorTable from "./DropTree/EditorTable";
+import DraggleElement from '@/pages/DraggleElement'
 import UploadCom from "@/components/Upload";
 const AppIndex = () => {
   const { t } = useTranslation();
@@ -16,10 +17,10 @@ const AppIndex = () => {
         <UploadCom />
       </div>
       <div className="right-bigData">
-        {/* <FileUploader /> */}
-        <DropTree />
+        {/* <DropTree />
         <div style={{height:100}}></div>
-        <EditorTable />
+        <EditorTable /> */}
+        <DraggleElement />
       </div>
     </div>
   );

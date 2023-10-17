@@ -54,9 +54,11 @@ export const editTreeItem: any = (tree: any, key: string) => {
   return _.map(tree, (item: any) => {
     if (item?.key === key) {
       item.isInput = true;
+      console.log("进来啦",item);
+      
       return item;
     } else if (item?.children) {
-      return { ...item, children: updateItem(item?.children, key) };
+      return { ...item, children: editTreeItem(item?.children, key) };
     }
     return item;
   });
