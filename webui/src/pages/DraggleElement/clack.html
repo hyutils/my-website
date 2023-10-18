@@ -18,95 +18,44 @@
 
 <body>
   <svg id="clock" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="100" cy="100" r="90" stroke="black" stroke-width="2" fill="white" />
-    <line x1="100" y1="100" x2="100" y2="35" stroke="black" stroke-width="2" id="hour-hand" />
-    <line x1="100" y1="100" x2="100" y2="25" stroke="black" stroke-width="1" id="minute-hand" />
+    <circle cx="100" cy="100" r="90" stroke="black" stroke-width="2" fill="Lavender" />
+    <line x1="100" y1="100" x2="100" y2="45" stroke="black" stroke-width="5" id="hour-hand" />
+    <line x1="100" y1="100" x2="100" y2="25" stroke="black" stroke-width="3" id="minute-hand" />
     <line x1="100" y1="100" x2="100" y2="15" stroke="red" stroke-width="1" id="second-hand" />
     <circle cx="100" cy="100" r="4" stroke="black" stroke-width="2" fill="gray" />
 
     <g id="numbers" transform="translate(100,100)">
-      <text x="0" y="-80" class="number">12</text>
-      <text x="80" y="0" class="number">3</text>
+      <text x="0" y="-75" class="number">12</text>
+      <text x="80" y="5" class="number">3</text>
       <text x="0" y="80" class="number">6</text>
-      <text x="-80" y="0" class="number">9</text>
+      <text x="-80" y="5" class="number">9</text>
     </g>
 
     <g id="ticks" transform="translate(100,100)">
       <!-- 刻度线，每5分钟一个 -->
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(30)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(60)" />
+      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(90)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(120)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(150)" />
+      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(180)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(210)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(240)" />
+      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(270)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(300)" />
       <line x1="0" y1="-80" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(330)" />
-
-      <!-- <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(6)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(12)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(18)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(24)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(36)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(42)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(48)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(54)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(66)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(72)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(78)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(84)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(96)" />
-      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(102)" /> -->
+      <line x1="0" y1="-85" x2="0" y2="-90" stroke="black" stroke-width="1" transform="rotate(360)" />
     </g>
   </svg>
 
-  <!-- 花 -->
-  <svg width="200" height="200">
-    <!-- 花瓣 -->
-    <circle cx="80" cy="80" r="30" fill="pink" />
-    <circle cx="120" cy="80" r="30" fill="pink" />
-    <circle cx="100" cy="100" r="30" fill="lightpink" />
-    <!-- 花蕊 -->
-    <circle cx="100" cy="80" r="10" fill="yellow" />
-  </svg>
-  <!-- 太阳花 -->
-  <svg width="200" height="200">
-    <!-- 太阳 -->
-    <circle cx="100" cy="100" r="50" fill="yellow" />
-    <!-- 花瓣 -->
-    <path d="M100 50 L85 75 L115 75 Z" fill="orange" />
-    <path d="M100 150 L85 125 L115 125 Z" fill="orange" />
-    <path d="M50 100 L75 85 L75 115 Z" fill="orange" />
-    <path d="M150 100 L125 85 L125 115 Z" fill="orange" />
-  </svg>
+  <svg>
+  <polygon points="50 180, 160 55, 180 70, 180 60, 190 65, 205 50, 195 35, 205 40, 190 30, 180 80" fill="white" stroke="black"/>
 
-  <!-- 树 -->
-  <svg width="200" height="200">
-    <!-- 树干 -->
-    <rect x="90" y="80" width="20" height="50" fill="brown" />
-    <!-- 树叶 -->
-    <circle cx="100" cy="60" r="40" fill="green" />
-    <circle cx="80" cy="80" r="40" fill="green" />
-    <circle cx="120" cy="80" r="40" fill="green" />
-    <circle cx="100" cy="100" r="40" fill="green" />
   </svg>
-
-  <!-- 人 -->
-  <svg width="200" height="200">
-    <!-- 头 -->
-    <circle cx="100" cy="60" r="40" fill="peachpuff" />
-    <!-- 身体 -->
-    <rect x="90" y="100" width="20" height="50" fill="blue" />
-    <!-- 眼睛 -->
-    <circle cx="85" cy="50" r="5" fill="black" />
-    <circle cx="115" cy="50" r="5" fill="black" />
-    <!-- 嘴巴 -->
-    <path d="M100 60 Q105 70 100 80 Q95 70 100 60" fill="red" />
-  </svg>
+  <!-- <svg>
+    <polygon points="160 55, 180 70, 180 60, 190 65, 205 50, 195 35, 205 40, 190 30, 180 45"/>
   
-  
-
-
-
+  </svg> -->
 
   <script>
     function updateClock() {
@@ -126,6 +75,8 @@
       hourHand.setAttribute('transform', `rotate(${hourDeg}, 100, 100)`);
       minuteHand.setAttribute('transform', `rotate(${minuteDeg}, 100, 100)`);
       secondHand.setAttribute('transform', `rotate(${secondDeg}, 100, 100)`);
+
+    
     }
 
     setInterval(updateClock, 1000); // 每秒更新一次时钟
