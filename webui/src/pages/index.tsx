@@ -3,13 +3,14 @@ import MyEdtior from "./Myedtior";
 import { useTranslation } from "react-i18next";
 import DragList from '../components/DraggerSort/list';
 import FileUploader from './Upload';
-import DropTree from './DropTree'
+import DropTree from './DropTree';
 import "./style.less";
+
 import EditorTable from "./DropTree/EditorTable";
-import DraggleElement from '@/pages/DraggleElement'
+import DraggleElement from '@/pages/DraggleElement';
 import UploadCom from "@/components/Upload";
+import Todolist from '@/pages/MyUseContext/TodoList';
 const AppIndex = () => {
-  const { t } = useTranslation();
   return (
     <div className="pageRoot">
       <div className="left-demo">
@@ -17,10 +18,7 @@ const AppIndex = () => {
         <UploadCom />
       </div>
       <div className="right-bigData">
-        {/* <DropTree />
-        <div style={{height:100}}></div>
-        <EditorTable /> */}
-        <DraggleElement />
+        <Todolist />
       </div>
     </div>
   );

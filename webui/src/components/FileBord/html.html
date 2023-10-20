@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>文件管理</title>
+    <style>
+        /* 样式：用于美化页面 */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        /* 样式：面包屑导航 */
+        .breadcrumbs {
+            margin-bottom: 10px;
+        }
+
+        /* 样式：下拉列表 */
+        .breadcrumb-dropdown {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+
+        .breadcrumb-dropdown a {
+            display: block;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .breadcrumbs:hover .breadcrumb-dropdown {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="breadcrumbs">
+        <!-- 面包屑导航部分 -->
+        <a href="#">根目录</a> &gt; 
+        <a href="#">文件夹1</a> &gt; 
+        <a href="#">文件夹2</a> &gt; 
+        <a href="#">当前文件夹</a>
+
+        <!-- 下拉列表 -->
+        <div class="breadcrumb-dropdown">
+            <a href="#">根目录</a>
+            <a href="#">文件夹1</a>
+            <a href="#">文件夹2</a>
+            <a href="#">当前文件夹</a>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript 代码可以用于处理用户交互或动态生成面包屑导航
+        // 这里只提供了静态示例
+    </script>
+</body>
+</html>
+
+
