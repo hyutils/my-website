@@ -8,13 +8,13 @@ const initList = {
 const reducer =(state:any, action:any)=> {
   switch(action.type){
     case 'add':
-      return [...state, action?.data];
+      return {...state, list:[...state?.list, action?.data]};
     case 'delete':
-      return state?.filter((item:any)=> item?.id !== action?.id);
+      return {...state, list:state?.list?.filter((item:any)=> item?.id !== action?.id)};
     case 'edit':
-      return state.map((item:any)=> item?.id === action?.id ? {...item, done: action?.done}: item);
+      return {...state, list:state.list.map((item:any)=> item?.id === action?.id ? {...item, ...action?.data}: item)};
     case 'view':
-      return state.find((item:any)=> item?.id === action?.id);
+      return {...state, list:state.list?.find((item:any)=> item?.id === action?.id)};
     default:
       return state
   }
