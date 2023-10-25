@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      background-color: rgba(0, 0, 0, 0.1)
+    }
+
+    canvas {
+      display: block;
+      margin: 200px auto;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="solar" width="300" height="300"></canvas>
+  <script>
+    init();
+
+    function init() {
+      let canvas = document.querySelector("#solar");
+      let ctx = canvas.getContext("2d");
+     
+      // 方式一
+      setInterval(()=> draw(ctx), 1000);
+      
+      // 方式二 
+      // requestAnimationFrame(function a(){
+      //   drawDial(ctx); //绘制表盘
+      //   drawAllHands(ctx); //绘制时分秒针
+      //   requestAnimationFrame(a)
+      // })
+    }
+
+    function draw(ctx) {
+        drawDial(ctx); //绘制表盘
+        drawAllHands(ctx); //绘制时分秒针
+        drawCricle(ctx)
+    }
+
+    /*绘制时分秒针*/
+    function drawAllHands(ctx) {
+      let time = new Date();
+
+      let s = time.getSeconds();
+      let m = time.getMinutes();
+      let h = time.getHours();
+
+      let pi = Math.PI;
+      let secondAngle = pi / 180 * 6 * s;  //计算出来s针的弧度
+      let minuteAngle = pi / 180 * 6 * m + secondAngle / 60;  //计算出来分针的弧度
+      let hourAngle = pi / 180 * 30 * h + minuteAngle / 12;  //计算出来时针的弧度
+
+      drawHand(hourAngle, 60, 6, "blue", ctx);  //绘制时针
+      drawHand(minuteAngle, 100, 4, "green", ctx);  //绘制分针
+      drawHand(secondAngle, 110, 2, "red", ctx);  //绘制秒针
+    }
+    
+    /**
+     * angle: 旋转角度
+     * len: 指针长度
+     * width: 宽度
+     * color: 填充颜色
+     * ctx: canvas对象
+     * */
+    function drawHand(angle, len, width, color, ctx) {
+      ctx.save();
+      ctx.translate(150, 150); //把坐标轴的远点平移到原来的中心
+      ctx.rotate(-Math.PI / 2 + angle);  //旋转坐标轴。 x轴就是针的角度
+      ctx.beginPath();
+      ctx.moveTo(-4, 0);
+      ctx.lineTo(len, 0);  // 沿着x轴绘制针
+      ctx.lineWidth = width;
+      ctx.strokeStyle = color;
+      ctx.lineCap = "round";
+      ctx.stroke();
+      ctx.closePath();
+      ctx.restore();
+    }
+
+    /*绘制表盘*/
+    function drawDial(ctx) {
+      let pi = Math.PI;
+
+      ctx.clearRect(0, 0, 300, 300); //清除所有内容
+      ctx.save();
+
+      ctx.translate(150, 150); //一定坐标原点到原来的中心
+      ctx.beginPath();
+      ctx.arc(0, 0, 148, 0, 2 * pi); //绘制圆周
+      ctx.stroke();
+      ctx.closePath();
+
+      for (let i = 0; i < 60; i++) {//绘制刻度。
+        const len = i % 5 ? 120 : 110;
+        const start = i % 5 ? 120 : 110;
+        ctx.save();
+        ctx.rotate(-pi / 2 + i * pi / 30);  //旋转坐标轴。坐标轴x的正方形从 向上开始算起
+        ctx.beginPath();
+        ctx.moveTo(start, 0);
+        ctx.lineTo(140, 0);
+        ctx.lineWidth = i % 5 ? 2 : 4;
+        ctx.strokeStyle = 'black';
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+      }
+
+      for (let i = 0; i <= 12; i++) {
+        ctx.save();
+        if (i % 3 === 0 && i!==0) {
+          ctx.fillText(i, Math.cos(-pi / 2 + i * pi / 6) * 100, Math.sin(-pi / 2 +i * pi / 6) * 100)
+        }
+        ctx.restore();
+      }
+      ctx.restore();
+    }
+
+    function drawCricle(ctx){
+      ctx.save();
+      // // 绘制中心圆点
+      ctx.translate(150, 150); //一定坐标原点到原来的中心
+      ctx.beginPath();
+      ctx.arc(0, 0, 8, 0, 2 * Math.PI); //绘制圆周
+      ctx.fillStyle="black"
+      ctx.fill();
+      ctx.closePath()
+      ctx.restore();
+    }
+   
+  </script>
+</body>
+
+</html>

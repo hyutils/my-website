@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>canvas示例</title>
+  </head>
+
+  <body>
+    <h1>这是一个示例页面</h1>
+    <canvas id="exampleCanvas" width="600" height="600"></canvas>
+
+    <script>
+      const draw = () => {
+        let canvas = document.querySelector("#exampleCanvas");
+        const context = canvas.getContext("2d");
+
+        context.beginPath();
+        context.arc(50, 50, 40, 0, Math.PI / 2, false);
+        context.stroke();
+      };
+      draw();
+    </script>
+  </body>
+</html>

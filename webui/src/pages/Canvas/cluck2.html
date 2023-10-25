@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Canvas 时钟示例</title>
+    <style>
+        #clockCanvas {
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="clockCanvas" width="200" height="200"></canvas>
+    <script>
+        function drawClock() {
+            const canvas = document.getElementById('clockCanvas');
+            const context = canvas.getContext('2d');
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height / 2;
+            const radius = canvas.width / 2 - 10;
+
+            // 清除画布
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+            // 绘制时钟外圈
+            context.beginPath();
+            context.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            context.strokeStyle = '#000';
+            context.lineWidth = 2;
+            context.stroke();
+            context.closePath();
+
+            // 获取当前时间
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            // 绘制时针
+            context.beginPath();
+            const hourAngle = (Math.PI / 2 - (hours % 12 + minutes / 60 + seconds / 3600) * (Math.PI / 6)) * 2;
+            const hourLength = radius * 0.5;
+            const hourX = centerX + hourLength * Math.cos(hourAngle);
+            const hourY = centerY - hourLength * Math.sin(hourAngle);
+            context.moveTo(centerX, centerY);
+            context.lineTo(hourX, hourY);
+            context.strokeStyle = 'blue';
+            context.lineWidth = 4;
+            context.stroke();
+            context.closePath();
+
+            // 绘制分针
+            context.beginPath();
+            const minuteAngle = (Math.PI / 2 - (minutes + seconds / 60) * (Math.PI / 30)) * 2;
+            const minuteLength = radius * 0.7;
+            const minuteX = centerX + minuteLength * Math.cos(minuteAngle);
+            const minuteY = centerY - minuteLength * Math.sin(minuteAngle);
+            context.moveTo(centerX, centerY);
+            context.lineTo(minuteX, minuteY);
+            context.strokeStyle = 'green';
+            context.lineWidth = 3;
+            context.stroke();
+            context.closePath();
+
+            // 绘制秒针
+            context.beginPath();
+            const secondAngle = (Math.PI / 2 - seconds * (Math.PI / 30)) * 2;
+            const secondLength = radius * 0.9;
+            const secondX = centerX + secondLength * Math.cos(secondAngle);
+            const secondY = centerY - secondLength * Math.sin(secondAngle);
+            context.moveTo(centerX, centerY);
+            context.lineTo(secondX, secondY);
+            context.strokeStyle = 'red';
+            context.lineWidth = 2;
+            context.stroke();
+            context.closePath();
+
+            // 绘制中心圆点
+            context.beginPath();
+            context.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+            context.fillStyle = 'black';
+            context.fill();
+            context.closePath();
+        }
+
+        // 每秒更新一次时钟
+        setInterval(drawClock, 1000);
+
+        // 初始绘制
+        drawClock();
+    </script>
+</body>
+</html>

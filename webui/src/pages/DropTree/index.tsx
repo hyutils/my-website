@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import _ from "lodash";
 import { Button, Dropdown, Input, Menu, Tree } from "antd";
 import type { DataNode, TreeProps } from "antd/es/tree";
-import { DownOutlined } from "@ant-design/icons";
+import { DownOutlined, UnorderedListOutlined } from "@ant-design/icons";
 import {
   deleteNodeByKey,
   mergeChildrenToParent,
@@ -14,6 +14,8 @@ import {
 import DynamicsForm from "./DynamicsForm";
 import HoverTable from "./HoverTable";
 import DropdownInput from "@/components/DropdownInput";
+
+import './style.less'
 const { TreeNode } = Tree;
 
 const DemoTree = () => {
@@ -242,7 +244,7 @@ const DemoTree = () => {
           style={{ paddingLeft, display: "flex" }}
           className="titleRoot"
         >
-          {icon}&nbsp;&nbsp;
+          <UnorderedListOutlined />
           <div>{title}</div>
         </div>
       </Dropdown>
@@ -250,10 +252,11 @@ const DemoTree = () => {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="dropTree" style={{ padding: "20px" }}>
       <Tree
         onDrop={handleDrop}
         draggable
+        showLine
         treeData={treeData}
         expandedKeys={expandedKeys}
         switcherIcon={<DownOutlined />}

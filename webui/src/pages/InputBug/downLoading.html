@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>带加载效果的下载</title>
+    <style>
+        .loading-spinner {
+            display: none;
+            width: 50px;
+            height: 50px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <a href="#" id="download-link">下载内容</a>
+    <div class="loading-spinner" id="loading-spinner"></div>
+    <script>
+      document.getElementById("download-link").addEventListener("click", function(event) {
+    event.preventDefault(); // 阻止默认的链接跳转行为
+
+    var downloadLink = this;
+    var loadingSpinner = document.getElementById("loading-spinner");
+
+    // 显示加载效果
+    loadingSpinner.style.display = "inline-block";
+
+    // 模拟下载操作（可以替换为实际的下载逻辑）
+    setTimeout(function() {
+        // 隐藏加载效果
+        loadingSpinner.style.display = "none";
+
+        // 模拟实际下载链接
+        window.location.href = "https://example.com/your-download-link"; 
+    }, 2000); // 这里的2000毫秒是模拟下载的时间，您可以根据需要调整
+});
+
+    </script>
+</body>
+</html>

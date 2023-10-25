@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>截取图片部分示例</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+    <br>
+    <button onclick="cropImage()">截取图片部分</button>
+    <br>
+    <img id="croppedImage" alt="截取的图片部分">
+    <br>
+
+    <script>
+        function cropImage() {
+            var canvas = document.getElementById('myCanvas');
+            var ctx = canvas.getContext('2d');
+            var image = new Image();
+
+            image.onload = function () {
+                // 在canvas上绘制整张图片
+                ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+                // 截取图片的一部分，这里示例截取左上角的100x100像素区域
+                var startX = 0;
+                var startY = 0;
+                var width = 100;
+                var height = 100;
+                var croppedData = ctx.getImageData(startX, startY, width, height);
+
+                // 创建一个新的canvas用于显示截取的部分
+                var croppedCanvas = document.createElement('canvas');
+                croppedCanvas.width = width;
+                croppedCanvas.height = height;
+                var croppedCtx = croppedCanvas.getContext('2d');
+                croppedCtx.putImageData(croppedData, 0, 0);
+
+                // 将截取的部分显示在页面上
+                var croppedImage = document.getElementById('croppedImage');
+                croppedImage.src = croppedCanvas.toDataURL();
+            };
+
+            // 设置要加载的图片
+            image.src = 'your_image.jpg'; // 替换成你要截取的图片的路径
+            // 将截图数据保存为图像文件
+            const dataURL = canvas.toDataURL('image/png');
+            
+            // 创建一个链接以下载截图
+            const a = document.createElement('a');
+            a.href = dataURL;
+            a.download = 'screenshot.png';
+            a.click();
+        }
+    </script>
+</body>
+</html>

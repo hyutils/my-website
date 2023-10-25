@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>中文输入法拼音输入示例</title>
+</head>
+<body>
+  <input type="text" id="textInput" oninput="onInput(event)" placeholder="oninput" />
+
+  <script>
+    let isComposing = false;
+    const input1 = document.getElementById('textInput');
+    console.log("111111", input1)
+    input1.addEventListener('compositionstart', e=>{
+      console.log("监听开始");
+      isComposing = true;
+    })
+    input1.addEventListener('compositionend', e=>{
+      console.log("监听结束", );
+      isComposing = false;
+      const value = e?.target?.value;
+      // 处理
+      console.log("最终的值是：", value)
+    })
+    const onInput = (e)=>{
+      
+      setTimeout(()=>{
+        if(!isComposing)
+        console.log("输入完成了", e?.target?.value)
+      },0)
+    }
+  </script>
+</body>
+</html>
