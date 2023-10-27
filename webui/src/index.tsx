@@ -1,15 +1,15 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './pages/routers';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./pages/routers";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
+import { initReactI18next } from "react-i18next";
+import i18n from "i18next";
+import { nextLocal } from "./nextLocals";
 
-import { initReactI18next } from 'react-i18next';
-import i18n from 'i18next';
-import { nextLocal } from './nextLocals'
-
-import intl from 'react-intl-universal';
-import locales from './locales';
+import intl from "react-intl-universal";
+import locales from "./locales";
 // i18n
 //   .use(initReactI18next)
 //   .init({
@@ -37,7 +37,7 @@ import locales from './locales';
 //     },
 //   });
 
-const currentLocale = localStorage.getItem('language') || 'zh'; // 默认语言
+const currentLocale = localStorage.getItem("language") || "zh"; // 默认语言
 console.log("初始化", currentLocale);
 
 intl.init({
@@ -46,10 +46,10 @@ intl.init({
 });
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
-  <App />
+    <App />
 );
 
 // If you want to start measuring performance in your app, pass a function
