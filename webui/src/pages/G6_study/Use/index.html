@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>AntV G6 Demo</title>
+</head>
+
+<body>
+  <div id="container"></div>
+
+  <!-- 引用g6 -->
+  <script src="https://cdn.jsdelivr.net/npm/@antv/g6@3.7.0/dist/g6.min.js"></script>
+
+  <script>
+    // 创建 G6 图表实例
+    const container = document.getElementById('container');
+    const width = container.scrollWidth;
+    const height = container.scrollHeight || 500;
+    const graph = new G6.Graph({
+      container: container,
+      width: width,
+      height: height,
+      defaultNode: {
+        size: 20,
+        style: {
+          fill: '#C6E5FF',
+          stroke: '#5B8FF9',
+          lineWidth: 0.3,
+        },
+        labelCfg: {
+          style: {
+            fontSize: 12,
+          },
+          position: 'bottom',
+          offset: 1,
+        },
+      },
+      defaultEdge: {
+        style: {
+          lineWidth: 2,
+          color: '#000',
+          labelCfg: {
+            autoRotate: true,
+            refY: 5,
+            style: {
+              fill: '#000'
+            }
+          },
+          endArrow: {
+            fill: '#000',
+            path: G6.Arrow.triangle(10, 12, 25),
+            d: 25
+          }
+        }
+      }
+    });
+
+    // 定义图表数据
+    const data = {
+      nodes: [
+        { id: 'node1', x: 100, y: 100, label: 'Node 1' },
+        { id: 'node2', x: 300, y: 100, label: 'Node 2' },
+      ],
+      edges: [
+        { source: 'node1', target: 'node2', label: 'Edge 1' },
+      ],
+    };
+
+    // 渲染图表
+    graph.data(data);
+    graph.render();
+  </script>
+</body>
+</html>

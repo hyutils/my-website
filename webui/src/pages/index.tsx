@@ -5,6 +5,7 @@ import EditorTable from "./DropTree/EditorTable";
 import UploadCom from "@/components/Upload";
 import Todolist from "@/pages/MyUseContext/TodoList";
 import Routers from "@/pages/Routers/index";
+import TestG6 from '@/pages/G6_study/Use/index'
 
 import "./style.less";
 
@@ -24,6 +25,9 @@ const AppIndex = () => {
         <div style={{ height: 32 }}>
           <Link to="/home/testRoute">路由拦截</Link>
         </div>
+        <div style={{ height: 32 }}>
+          <Link to="/home/g6">图可视化</Link>
+        </div>
       </div>
       <div className="right-bigData">
         <Routes>
@@ -31,6 +35,7 @@ const AppIndex = () => {
           <Route path="/todolist" element={<Todolist />} />
           <Route path="/editorTable" element={<EditorTable />} />
           <Route path="/testRoute" element={<Routers />} />
+          <Route path="/g6" element={<TestG6 />} />
         </Routes>
       </div>
     </div>
