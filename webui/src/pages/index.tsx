@@ -22,7 +22,7 @@ const AppIndex = () => {
           <Link to="/home/editorTable">可编辑表格</Link>
         </div>
         <div style={{ height: 32 }}>
-          <Link to="/home/testRoute">Prompt</Link>
+          <Link to="/home/testRoute">Prompt111111</Link>
         </div>
       </div>
       <div className="right-bigData">
