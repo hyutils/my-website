@@ -13,7 +13,7 @@ const AppIndex = () => {
     <div className="pageRoot">
       <div className="left-demo">
         <div style={{ height: 32 }}>
-          <Link to="/home/upload">上传文件1111</Link>
+          <Link to="/home/upload">上传文件9</Link>
         </div>
         <div style={{ height: 32 }}>
           <Link to="/home/todolist">todolist</Link>
