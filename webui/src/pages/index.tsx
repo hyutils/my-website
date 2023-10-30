@@ -19,7 +19,7 @@ const AppIndex = () => {
           <Link to="/home/todolist">todolist</Link>
         </div>
         <div style={{ height: 32 }}>
-          <Link to="/home/editorTable">可编辑Table1</Link>
+          <Link to="/home/editorTable">可编辑表格</Link>
         </div>
         <div style={{ height: 32 }}>
           <Link to="/home/testRoute">Prompt</Link>
