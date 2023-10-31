@@ -26,7 +26,7 @@ const AppIndex = () => {
           <Link to="/home/testRoute">路由拦截</Link>
         </div>
         <div style={{ height: 32 }}>
-          <Link to="/home/g6">图可视化</Link>
+          <Link to="/home/g6">图可视化测试</Link>
         </div>
       </div>
       <div className="right-bigData">
