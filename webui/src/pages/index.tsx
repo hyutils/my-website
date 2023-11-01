@@ -5,7 +5,7 @@ import EditorTable from "./DropTree/EditorTable";
 import UploadCom from "@/components/Upload";
 import Todolist from "@/pages/MyUseContext/TodoList";
 import Routers from "@/pages/Routers/index";
-import TestG6 from '@/pages/G6_study/GraphInstance/index'
+import TestG6 from '@/pages/G6_study/Beheaver/index'
 
 import "./style.less";
 

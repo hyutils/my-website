@@ -1,6 +1,5 @@
 import G6 from "@antv/g6";
 import rightImg from '../images/1.svg'
-const Util = G6.Util;
 
 const getStarPoints = (cx: any, cy: any, r: any, n: any) => {
   const angle = (360 / n) * (Math.PI / 180); // 计算五角星每个角的弧度
