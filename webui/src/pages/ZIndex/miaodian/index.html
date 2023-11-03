@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>锚点导航示例</title>
+    <style>
+      /* 样式用于美化示例，非必需 */
+      #section2 {
+        height: 1000px;
+        background-color: lightblue;
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="section1">
+      <h1>第一部分</h1>
+      <p>这是第一部分的内容。</p>
+    </div>
+    <a href="#section2">跳转到第一部分</a>
+
+    <div id="section2">
+      <h1>第二部分</h1>
+      <p>这是第二部分的内容。</p>
+    </div>
+
+    <a href="#section1">跳转到第二部分</a>
+
+    <script>
+      document
+        .querySelector('a[href="#section1"]')
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          var targetElement = document.querySelector("#section1");
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        });
+
+      document
+        .querySelector('a[href="#section2"]')
+        .addEventListener("click", function (e) {
+          e.preventDefault();
+          var targetElement = document.querySelector("#section2");
+          targetElement.scrollIntoView({ behavior: "smooth" });
+        });
+    </script>
+  </body>
+</html>

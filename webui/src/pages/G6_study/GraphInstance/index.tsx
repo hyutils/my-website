@@ -75,6 +75,10 @@ export default function GraphInstance() {
     graphRef.current.data(data);
     graphRef.current.render();
 
+    graphRef.current.on('',(ev:any)=>{
+
+    })
+
     graphRef.current.on("edge:mouseenter", (evt: any) => {
       const { item } = evt;
       graphRef.current.setItemState(item, "active", true);

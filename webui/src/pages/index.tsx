@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route, Link } from "react-router-dom";
-
+import { DownCircleTwoTone } from "@ant-design/icons";
 import EditorTable from "./DropTree/EditorTable";
 import UploadCom from "@/components/Upload";
 import Todolist from "@/pages/MyUseContext/TodoList";
 import Routers from "@/pages/Routers/index";
-import TestG6 from '@/pages/G6_study/Beheaver/index'
+import TestG6 from "@/pages/G6_study/Combo/index";
 
 import "./style.less";
 
@@ -26,6 +26,7 @@ const AppIndex = () => {
           <Link to="/home/testRoute">路由拦截</Link>
         </div>
         <div style={{ height: 32 }}>
+          <DownCircleTwoTone twoToneColor="#eb2f96"  />
           <Link to="/home/g6">图可视化测试</Link>
         </div>
       </div>
