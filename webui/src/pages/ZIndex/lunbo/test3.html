@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fixed Menu Layout</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        position: relative;
+      }
+
+      .content {
+        width: 100%;
+        padding: 20px;
+        margin-right: 220px; /* 200px for menu width + 20px for spacing */
+      }
+
+      .menu {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        width: 200px; /* Adjust the width as needed */
+        background-color: #f0f0f0;
+        padding: 10px;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="content">
+        <!-- Your main content goes here -->
+        <h1>Main Content</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. ...</p>
+      </div>
+      <div class="menu">
+        <!-- Your menu content goes here -->
+        Menu Content
+      </div>
+    </div>
+  </body>
+</html>

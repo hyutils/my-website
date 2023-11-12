@@ -5,7 +5,7 @@ import UploadCom from "@/components/Upload";
 import IconFont from "@/components/IconFont";
 import Todolist from "@/pages/MyUseContext/TodoList";
 import Routers from "@/pages/Routers/index";
-import TestG6 from "@/pages/G6_study/Combo/index";
+import TestG6 from "@/pages/G6_study/mode/index";
 
 import "./style.less";
 
@@ -26,7 +26,7 @@ const AppIndex = () => {
           <Link to="/home/testRoute">路由拦截</Link>
         </div>
         <div style={{ height: 32 }}>
-          <IconFont type="iconcolor-moxingbushu2" style={{color: '#9254DE', fontSize: 20}}/>
+          <IconFont type="iconcolor-moxingbushu2" style={{ color: '#9254DE', fontSize: 20 }} />
           <Link to="/home/g6">图可视化测试</Link>
         </div>
       </div>

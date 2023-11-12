@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .container {
+        width: 400px;
+        height: 200px;
+        margin: 0 auto;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .slide {
+        width: 100%;
+        height: 100%;
+        display: none;
+      }
+
+      .img1 {
+        width: 400px;
+        height: 200px;
+        background: yellow;
+      }
+
+      .img2 {
+        width: 400px;
+        height: 200px;
+        background: goldenrod;
+      }
+
+      .img3 {
+        width: 400px;
+        height: 200px;
+        background: yellowgreen;
+      }
+
+      #prevBtn,
+      #nextBtn {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+      #prevBtn {
+        position: absolute;
+        left: 20px;
+        z-index: 2;
+      }
+      #nextBtn {
+        position: absolute;
+        right: 20px;
+        z-index: 2;
+      }
+      .controls {
+        position: absolute;
+        left: 50%;
+        bottom: 20px;
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      .num-ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .num-ul li {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.3);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="slide">
+        <div class="img1"></div>
+      </div>
+      <div class="slide">
+        <div class="img2"></div>
+      </div>
+      <div class="slide">
+        <div class="img3"></div>
+      </div>
+
+      <div id="nextBtn">&gt;</div>
+      <div id="prevBtn">&lt;</div>
+
+      <div class="controls">
+        <ul class="num-ul">
+          <li>1</li>
+          <li>2</li>
+          <li>3</li>
+        </ul>
+      </div>
+    </div>
+
+    <script>
+      let timer = null; // 定时器
+      const slides = document.querySelectorAll(".slide"); // 图片容器
+      const containerDom = document.getElementsByClassName("container")[0];
+      var numUlDom = document.getElementsByClassName("num-ul")[0]; // 数字按钮父级容器
+      var numList = document
+        .getElementsByClassName("num-ul")[0]
+        .getElementsByTagName("li"); // 数字切换按钮列表
+      let currentSlide = 0;
+      // 设置图片的样式
+      function showSlide(index) {
+        slides[currentSlide].style.display = "none";
+        numList[currentSlide].style.backgroundColor = ""; // 清空上一个按钮的样式
+        currentSlide = (index + slides.length) % slides.length;
+        numList[currentSlide].style.backgroundColor = "#ccc";
+        slides[currentSlide].style.display = "block";
+      }
+
+      function nextSlide() {
+        showSlide(currentSlide + 1);
+      }
+
+      function prevSlide() {
+        showSlide(currentSlide - 1);
+      }
+
+      // 鼠标移入容器，停止自动播放
+      containerDom.addEventListener("mouseenter", closeAutoShow);
+      // 鼠标移出容器，开启自动播放
+      containerDom.addEventListener("mouseleave", autoPlay);
+
+      // 监听切换按钮
+      document.getElementById("nextBtn").addEventListener("click", nextSlide);
+      document.getElementById("prevBtn").addEventListener("click", prevSlide);
+      // 数字按钮点击事件
+      numUlDom.addEventListener("click", numClick);
+      // 数字按钮点击事件
+      function numClick(e) {
+        // ulDom.style.transition = "0.5s";
+        // 检查点击的目标是否是一个li元素
+        if (e.target.tagName === "LI") {
+          // 获取被点击的li元素的内容或索引
+          const clickedItem = event.target;
+          const clickedIndex = Array.from(numUlDom.children).indexOf(
+            clickedItem
+          );
+          if (clickedIndex == undefined) {
+            return;
+          }
+          console.log(currentSlide, clickedIndex);
+          numList[currentSlide].style.backgroundColor = ""; // 清空上一个按钮的样式
+          numList[clickedIndex].style.backgroundColor = "#ccc";
+          showSlide(clickedIndex);
+        }
+      }
+      // 定时器开始
+      function autoPlay() {
+        timer = setInterval(nextSlide, 3000);
+      }
+      // 定时器结束
+      function closeAutoShow() {
+        clearInterval(timer);
+      }
+      showSlide(0);
+      // 自动播放
+      autoPlay();
+    </script>
+  </body>
+</html>
