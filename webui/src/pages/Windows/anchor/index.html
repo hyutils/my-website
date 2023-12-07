@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>滚动导航</title>
+  <style>
+    body {
+      height: 2000px; /* 用于演示滚动效果，实际使用时应根据页面内容调整 */
+    }
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #f1f1f1;
+      padding: 10px;
+    }
+    section {
+      margin-top: 50px;
+      padding: 20px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+  <nav id="mainNav">
+    <ul>
+      <li><a href="#section1">Section 1</a></li>
+      <li><a href="#section2">Section 2</a></li>
+      <li><a href="#section3">Section 3</a></li>
+    </ul>
+  </nav>
+
+  <section id="section1">
+    <h2>Section 1</h2>
+    <!-- 内容 -->
+  </section>
+
+  <section id="section2">
+    <h2>Section 2</h2>
+    <!-- 内容 -->
+  </section>
+
+  <section id="section3">
+    <h2>Section 3</h2>
+    <!-- 内容 -->
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
